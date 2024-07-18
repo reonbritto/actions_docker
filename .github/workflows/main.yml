@@ -38,3 +38,8 @@ jobs:
         with:
           image-ref: ${{ steps.meta.outputs.tags }}
           ignore-unfixed: true
+      - name: Save Trivy scan results
+        run: echo "${{ steps.trivy_scan.outputs.results }}" > trivy_scan_results.txt
+  
+      - name: Display Trivy scan results
+        run: cat trivy_scan_results.txt
