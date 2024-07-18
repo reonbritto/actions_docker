@@ -36,5 +36,5 @@ jobs:
       - name: Run Trivy scan
         uses: aquasecurity/trivy-action@0.20.0
         with:
-          image-ref: reonbritto/Node-JS:${{ steps.meta.outputs.tags }}
+          image-ref: ${{ steps.meta.outputs.tags }}
           ignore-unfixed: true
