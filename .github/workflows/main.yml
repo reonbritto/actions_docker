@@ -48,7 +48,8 @@ jobs:
           
       - name: Add Trivy scan results to repository
         run: |
-            git remote add origin https://github.com/reonbritto/actions_docker.git
+            git config --global user.email "reonbritto@gmail.com"
+            git config --global user.name "reonbritto"
             git add reports/trivy_scan_results.txt
             git commit -m "Add Trivy scan results"
             git push
