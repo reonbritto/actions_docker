@@ -34,7 +34,7 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
 
       - name: Run Trivy scan
-        uses: aquasecurity/trivy-action@v1
+        uses: aquasecurity/trivy-action@0.20.0
         with:
           image-ref: reonbritto/Node-JS:${{ steps.meta.outputs.tags }}
           ignore-unfixed: true
