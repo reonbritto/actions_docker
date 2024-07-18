@@ -43,16 +43,21 @@ jobs:
           ignore-unfixed: true
 
 
-      - name: Save Trivy scan results
-        run: |
-            echo "${{ steps.trivy_scan.outputs.results }}" > trivy_scan_results.txt
-            mkdir -p reports
-            mv trivy_scan_results.txt reports/
+      # - name: Save Trivy scan results
+      #   run: |
+      #       echo "${{ steps.trivy_scan.outputs.results }}" > trivy_scan_results.txt
+      #       mkdir -p reports
+      #       mv trivy_scan_results.txt reports/
           
-      - name: Add Trivy scan results to repository
-        run: |
-            git config --global user.email "reonbritto@gmail.com"
-            git config --global user.name "reonbritto"
-            git add reports/trivy_scan_results.txt
-            git commit -m "Add Trivy scan results"
-            git push
+      # - name: Add Trivy scan results to repository
+      #   run: |
+      #       git config --global user.email "reonbritto@gmail.com"
+      #       git config --global user.name "reonbritto"
+      #       git add reports/trivy_scan_results.txt
+      #       git commit -m "Add Trivy scan results"
+      #       git push
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: 'trivy-results.sarif'
